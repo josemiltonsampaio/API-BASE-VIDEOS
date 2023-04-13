@@ -6,9 +6,16 @@ namespace VideoAPI.Controllers;
 [Route("[controller]")]
 public class ClienteController : ControllerBase
 {
+    private readonly ClienteRepositorio _repositorio;
+
+    public ClienteController(ClienteRepositorio repositorio)
+    {
+        _repositorio = repositorio;
+    }
+
     [HttpGet()]
     public IEnumerable<Cliente> ObtemClientes()
     {
-        return ClienteRepositorio.Clientes;
+        return _repositorio.ObtemClientes();
     }
 }

@@ -1,17 +1,15 @@
 ﻿namespace VideoAPI.Models;
 public class ClienteRepositorio
 {
-    public static List<Cliente> Clientes = new List<Cliente>
+    private readonly AppDbContext _context;
+
+    public ClienteRepositorio(AppDbContext context)
     {
-        new Cliente
-        {
-            Id = 1,
-            Nome = "Mariana"
-        },
-        new Cliente
-        {
-            Id = 2,
-            Nome = "Mateus"
-        }
-    };
+        _context = context;
+    }
+
+    public IQueryable<Cliente> ObtemClientes()
+    {
+        return _context.Clientes;
+    }
 }
